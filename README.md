@@ -1,6 +1,6 @@
-# ✂️ [AAAI'26] iMAD Intelligent Multi-Agent Debate for Efficient and Accurate LLM Inference
+# [AAAI'26] iMAD Intelligent Multi-Agent Debate for Efficient and Accurate LLM Inference
 
-## 👋🏻 Abstract
+## Abstract
 Large Language Model (LLM) agent systems have advanced rapidly, driven by their strong generalization in zero-shot settings. To further enhance reasoning and accuracy on complex tasks, Multi-Agent Debate (MAD) has emerged as a promising framework that engages multiple LLM agents in structured debates to encourage diverse reasoning. However, triggering MAD for every query is inefficient, as it incurs substantial computational (token) cost and may even degrade accuracy by overturning correct single-agent answers. To address these limitations, we propose intelligent Multi-Agent Debate (iMAD), a token-efficient framework that selectively triggers MAD only when it is likely to be beneficial (i.e., correcting an initially wrong answer). To achieve this goal, iMAD learns generalizable model behaviors to make accu- rate debate decisions. Specifically, iMAD first prompts a single agent to produce a structured self-critique response, from which we extract 41 interpretable linguistic and semantic features capturing hesitation cues. Then, iMAD uses a lightweight debate-decision classifier, trained using our proposed FocusCal loss, to determine whether to trigger MAD, enabling robust debate decisions without test-dataset-specific tuning. Through extensive experiments using six (visual) question answering datasets against five competitive baselines, we show that iMAD significantly reduces token usage (by up to 92%) while also improving final answer accuracy (by up to 13.5%).
 
 <p align="center">
@@ -52,7 +52,7 @@ python Classfier.py   --Model MLP2HEAD     --lossName FocusCalLoss   --Nlayers 6
 
 ## ⚙️ Command-Line Arguments
 
-### 📌 Model & Dataset
+### Model & Dataset
 
 | Argument | Default | Choices | Description |
 |---------|---------|---------|-------------|
@@ -60,7 +60,7 @@ python Classfier.py   --Model MLP2HEAD     --lossName FocusCalLoss   --Nlayers 6
 | --Data | stat_self_critique | stat_self_critique | Dataset name |
 | --confcolumn | InitialConfidence | - | Confidence column name |
 
-### 🏋️ Training
+### Training
 
 | Argument | Default | Choices | Description |
 |---------|---------|---------|-------------|
@@ -71,7 +71,7 @@ python Classfier.py   --Model MLP2HEAD     --lossName FocusCalLoss   --Nlayers 6
 | --Learningrate | 0.001 | - | Learning rate |
 | --epochs | 50 | - | Epochs |
 
-### 🔄 Preprocessing
+### Preprocessing
 
 | Argument | Default | Choices | Description |
 |---------|---------|---------|-------------|
@@ -79,7 +79,7 @@ python Classfier.py   --Model MLP2HEAD     --lossName FocusCalLoss   --Nlayers 6
 | --Scaller | standard | standard/minmax/none | Feature scaling |
 | --ClassWeights | False | True/False | Weighted loss |
 
-### 🔥 FocusCalLoss Parameters
+### FocusCalLoss Parameters
 
 | Argument | Default | Description |
 |----------|---------|-------------|
