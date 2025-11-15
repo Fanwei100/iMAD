@@ -149,7 +149,7 @@ device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 
-lossparams=dict(alpha_pos=1.0, alpha_neg=2.0, gamma=2.0, tau=0.7, lambda_cp=0.3, mu_ece=0.1, n_bins=15)
+lossparams=dict(alpha_pos=1.0, alpha_neg=2.0, gamma=2.0, tau=0.7, lambda_cp=6, mu_ece=5, n_bins=15)
 def Experiment(ModelName,DataType,SmotType,Scaller,ClassWeights,lossName,nlayers, hidden_dim,dropout_rate,use_batchnorm,LR,epochs,confcolumn,datapath,lossparams=lossparams):
     """Run a single end-to-end experiment and persist checkpoints and metrics.
 
@@ -256,7 +256,7 @@ def Experiment(ModelName,DataType,SmotType,Scaller,ClassWeights,lossName,nlayers
     results_df = pd.DataFrame(results)
     results_df.to_csv(outFile, index=False)
 
-    print("✅ All evaluations complete. Results saved to",outFile)
+    print("✅ All evaluations complete. Results saved to", outFile)
 
 
 def get_arg_parser():
@@ -287,8 +287,8 @@ def get_arg_parser():
     parser.add_argument("--ClassWeights", default=False, type=lambda x: x.lower() in ['true', '1'])
 
     # Loss parameters
-    parser.add_argument("--alpha_pos", default=2.0, type=float, choices=[2, 3, 4])
-    parser.add_argument("--alpha_neg", default=1.0, type=float, choices=[1, 2, 3])
+    parser.add_argument("--alpha_pos", default=1.0, type=float, choices=[1, 2, 3])
+    parser.add_argument("--alpha_neg", default=2.0, type=float, choices=[2, 4, 6])
     parser.add_argument("--gamma", default=2, type=int, choices=[1, 2, 3, 4])
     parser.add_argument("--lambda_cp", default=6, type=int, choices=[1, 2, 3, 4, 5, 6])
     parser.add_argument("--mu_ece", default=5, type=int, choices=[1, 2, 3, 4, 5, 6])
