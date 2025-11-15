@@ -1,19 +1,11 @@
-# iMAD
-iMAD: Intelligent Multi-Agent Debate for Efficient and Accurate LLM Inference
+# ✂️ iMAD Intelligent Multi-Agent Debate for Efficient and Accurate LLM Inference
+
+## Abstract
+Large Language Model (LLM) agent systems have advanced rapidly, driven by their strong generalization in zero-shot settings. To further enhance reasoning and accuracy on complex tasks, Multi-Agent Debate (MAD) has emerged as a promising framework that engages multiple LLM agents in structured debates to encourage diverse reasoning. However, triggering MAD for every query is inefficient, as it incurs substantial computational (token) cost and may even degrade accuracy by overturning correct single-agent answers. To address these limitations, we propose intelligent Multi-Agent Debate (iMAD), a token-efficient framework that selectively triggers MAD only when it is likely to be beneficial (i.e., correcting an initially wrong answer). To achieve this goal, iMAD learns generalizable model behaviors to make accu- rate debate decisions. Specifically, iMAD first prompts a single agent to produce a structured self-critique response, from which we extract 41 interpretable linguistic and semantic features capturing hesitation cues. Then, iMAD uses a lightweight debate-decision classifier, trained using our proposed FocusCal loss, to determine whether to trigger MAD, enabling robust debate decisions without test-dataset-specific tuning. Through extensive experiments using six (visual) question answering datasets against five competitive baselines, we show that iMAD significantly reduces token usage (by up to 92%) while also improving final answer accuracy (by up to 13.5%).
 
 
+![Header](Header.png)
 
-# ✂️ iMAD Classifier
-
-
-![Header](Images/Header.png)
-
-
-## 👋🏻 Method Overview
-
-![Method](Images/Method.png)
-
-iMAD is a configurable deep learning pipeline for binary classification using a multi‑head MLP (MLP2Head). It supports flexible data loading, preprocessing, sampling, custom loss functions, and detailed experiment logging.
 
 ## 🚀 Features
 
@@ -92,12 +84,13 @@ python Classfier.py   --Model MLP2HEAD     --lossName FocusCalLoss   --Nlayers 6
 | Argument | Default | Description |
 |----------|---------|-------------|
 | --alpha_pos | 2.0 | Positive weight |
-| --alpha_neg | 6.0 | Negative weight |
+| --alpha_neg | 1.0 | Negative weight |
 | --gamma | 2 | Focusing parameter |
 | --lambda_cp | 6 | Regularization term |
 | --mu_ece | 5 | Calibration loss weight |
 | --tau | 0.7 | Temperature scaling |
 | --n_bins | 15 | ECE bins |
+
 
 ## 📤 Output
 
@@ -106,10 +99,3 @@ python Classfier.py   --Model MLP2HEAD     --lossName FocusCalLoss   --Nlayers 6
 - **Results CSV** in `Results/DLLResults.csv`  
   Includes accuracy, precision, recall, F1, ROC‑AUC, confusion matrix.
 
-## 📈 Results
-
-![Results.png](Images/Results.png)
-
-## 🙏 Acknowledgement
-
-Inspired by modular deep‑learning experiment frameworks.
