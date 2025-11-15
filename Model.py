@@ -50,14 +50,14 @@ class MLP2Head(nn.Module):
             correctness and hesitation, each with shape ``[batch, 1]``.
         """
         # Extract LLM confidence and compute ℓ_LLM = log(p / (1-p))
-        confidense_raw = x[:, self.confcolidx:self.confcolidx+1]  # shape: [batch, 1]
+        confidence_raw = x[:, self.confcolidx:self.confcolidx+1]  # shape: [batch, 1]
         # Min-max normalize to [0,1]
-        confidense = (confidense_raw - confidense_raw.min()) / (confidense_raw.max() - confidense_raw.min() + 1e-8)
+        confidence = (confidence_raw - confidence_raw.min()) / (confidence_raw.max() - confidence_raw.min() + 1e-8)
 
         # Optional: Clamp to avoid exact 0 or 1 (numerical safety)
-        confidense = torch.clamp(confidense, min=1e-5, max=1 - 1e-5)
+        confidence = torch.clamp(confidence, min=1e-5, max=1 - 1e-5)
 
-        llm_logit = torch.log(confidense / (1 - confidense + 1e-8))
+        llm_logit = torch.log(confidence / (1 - confidence + 1e-8))
 
         # Run shared encoder
         shared_repr = self.shared_encoder(x)
