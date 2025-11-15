@@ -1,5 +1,3 @@
-"""Utilities for loading, cleaning, and resampling confidence datasets."""
-
 import os.path,time
 from functools import reduce
 from imblearn.over_sampling import SMOTE,SMOTEN,SMOTENC
