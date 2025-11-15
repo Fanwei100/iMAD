@@ -12,7 +12,7 @@ Large Language Model (LLM) agent systems have advanced rapidly, driven by their 
 - 🔧 Fully configurable via CLI  
 - 📊 Auto‑scaling, balancing (SMOTE / Undersampling)  
 - 🧮 Custom FocusCalLoss  
-- 🏋️‍♂️ Train/test metrics with ROC‑AUC  
+- 📈Train/test metrics with ROC‑AUC  
 - 🗂️ Automatic results logging + model saving  
 
 ## 📦 Installation
